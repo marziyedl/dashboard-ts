@@ -1,64 +1,56 @@
-import React, { useState } from "react";
-import ReactApexChart from "react-apexcharts";
+import { Line } from "@ant-design/plots";
+import { useGetList } from "hooks";
+import { useEffect, useState } from "react";
+import { GET_SENSOR_STATES } from "utils/APIUrls";
 
+type ChartData = {
+  name: string;
+  temp: number;
+  time: number;
+};
 function LineChart() {
-  const [chartData, setChartData] = useState({
-    series: [
-      {
-        name: "Desktops",
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+  const { items, loading } = useGetList(GET_SENSOR_STATES);
+  const [chartData, setChartData] = useState<ChartData[]>([]);
+
+  useEffect(() => {
+    let index = 0;
+    let newArray: ChartData[] = [];
+
+    const convertArray = (array: any) => {
+      if (array[index].stats) {
+        const device = array[index].stats.map((item: any, i: number) => {
+          return { name: array[index].device_id, temp: item.temp, time: i };
+        });
+
+        newArray = [...newArray, ...device];
+      }
+      index += 1;
+      if (index === array.length) return newArray;
+      convertArray(array);
+    };
+
+    if (!items.length) return;
+    // convert API response to data for chart
+    convertArray(items);
+
+    setChartData(newArray);
+  }, [items]);
+
+  const config = {
+    data: chartData,
+    xField: "time",
+    yField: "temp",
+    seriesField: "name",
+
+    smooth: true,
+    animation: {
+      appear: {
+        animation: "path-in",
+        duration: 5000,
       },
-    ],
-  });
-  return (
-    <>
-      <div id="chart">
-        <ReactApexChart
-          options={{
-            chart: {
-              height: 350,
-              type: "line",
-              zoom: {
-                enabled: false,
-              },
-            },
-            dataLabels: {
-              enabled: false,
-            },
-            stroke: {
-              curve: "straight",
-            },
-            title: {
-              text: "Product Trends by Month",
-              align: "left",
-            },
-            grid: {
-              row: {
-                colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-                opacity: 0.5,
-              },
-            },
-            xaxis: {
-              categories: [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-              ],
-            },
-          }}
-          series={chartData.series}
-          type="line"
-          height={350}
-        />
-      </div>
-    </>
-  );
+    },
+  };
+  return <>{!loading && chartData.length ? <Line {...config} /> : ""}</>;
 }
 
 export default LineChart;

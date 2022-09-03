@@ -8,17 +8,18 @@ const UsePut = (
     url: "",
     callBack: (res) => {},
     body: {},
-    hideToast: false,
+    showToast: false,
     onError: (err) => {},
-    Trigger: false,
   },
 ) => {
   const [editLoading, setEditLoading] = useState(false);
+  const didMount = useRef(false);
 
   useEffect(() => {
-    debugger;
-    if (data.Trigger) {
+    if (didMount.current) {
       editItem();
+    } else {
+      didMount.current = true;
     }
   }, [JSON.stringify(data)]);
 
@@ -27,7 +28,7 @@ const UsePut = (
 
     try {
       await Adapter.put(data.url, data.body).then((response: ResponseType) => {
-        if (data.hideToast) {
+        if (data.showToast) {
           toast.success("Item edited successfully!");
         }
         if (data.callBack) {

@@ -8,14 +8,14 @@ const UsePost = (
     url: "",
     callBack: (res) => {},
     body: {},
-    hideToast: false,
+    showToast: false,
     onError: (err) => {},
   },
 ) => {
   const [postLoading, setPostLoading] = useState(false);
   const [isCanceled, setIsCanceled] = useState(false);
   const didMount = useRef(false);
-  
+
   useEffect(() => {
     if (didMount.current) {
       if (!isCanceled) {
@@ -24,7 +24,6 @@ const UsePost = (
     } else {
       didMount.current = true;
     }
-
     return () => {
       setIsCanceled(true);
     };
@@ -34,7 +33,8 @@ const UsePost = (
     setPostLoading(true);
     try {
       await Adapter.post(data.url, data.body).then((response: ResponseType) => {
-        if (data.hideToast) {
+        if (data.showToast) {
+          debugger
           toast.success("action was succeessfully!");
         }
         if (data.callBack) {

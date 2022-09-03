@@ -1,10 +1,9 @@
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { ButtonWithText } from "components/common/button/ButtonWithText";
 import FieldInput from "components/common/fields/FieldInput";
 import FieldRadio from "components/common/fields/FieldRadio";
 import Loading from "components/common/Loading";
 import { Form, Formik } from "formik";
-import { UseGetDetails, UsePost, UsePut } from "hooks";
+import { UseGetDetails, UsePut } from "hooks";
 import { useSchema } from "hooks/other/useSchema";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -29,23 +28,20 @@ function EditSensor() {
     url: "",
     callBack: () => {},
     body: {},
-    hideToast: false,
+    showToast: true,
     onError: () => {},
-    Trigger: false,
   });
   const { editLoading } = UsePut(putData);
-  const { loading, result }: any = UseGetDetails(`${GET_SENSOR_DETAIL(id)}`);
+  const { loading, result } = UseGetDetails(`${GET_SENSOR_DETAIL(id)}`);
 
   const editSensor = (values: FormValueType) => {
     setPutData({
+      ...putData,
       url: EDIT_SENSOR(id),
       callBack: () => {
         navigate("/");
       },
       body: { ...values },
-      hideToast: true,
-      onError: () => {},
-      Trigger: true,
     });
   };
   const { addSensorValidation } = useSchema();
@@ -63,8 +59,8 @@ function EditSensor() {
         {!loading ? (
           <Formik
             initialValues={{
-              customer: result.result.customer,
-              location: result.result.location,
+              customer: result.result?.customer,
+              location: result.result?.location,
               min_temp_limit: 0,
               monitor_min_temp: false,
               max_temp_limit: 0,
@@ -133,7 +129,7 @@ function EditSensor() {
                   mode="submit"
                   type="primary"
                   className="me-2 col-2"
-                  text="Add sensor"
+                  text="Edit sensor"
                   disabled={editLoading}
                   loading={editLoading}
                 />

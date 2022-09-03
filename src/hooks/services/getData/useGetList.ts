@@ -1,9 +1,9 @@
 import { Adapter } from "helper/Adapter";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ResponseType } from "../../../utils/types";
+import { ResponseType } from "utils/types";
 
 const useGetList = (url: string = "", params: object = {}) => {
-  const [items, setItems] = useState<object[]>([]);
+  const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [totalPage, setTotalPage] = useState<Array<number>>([]);
   const [totalItemCount, setTotalItemCount] = useState<number>(0);
@@ -15,7 +15,7 @@ const useGetList = (url: string = "", params: object = {}) => {
       if (unMount.current) {
         await Adapter.get(url, { params: { ...params } }).then(
           (response: ResponseType) => {
-            setItems(response.data.items || response.data);
+            setItems(response.data.results);
             setTotalPage(response.data.paging.pages);
             setTotalItemCount(response.data.paging.count);
           },

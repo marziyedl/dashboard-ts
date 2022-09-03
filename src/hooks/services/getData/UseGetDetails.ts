@@ -1,5 +1,5 @@
 import { Adapter } from "helper/Adapter";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ResponseType } from "utils/types";
 
 const useGetDetails = (
@@ -7,17 +7,12 @@ const useGetDetails = (
   onSuccess: (arg: object) => void = () => {},
   params: object = {},
 ) => {
-  const [result, setResult] = useState<object>({});
+  const [result, setResult] = useState<any>({});
   const [loading, setloading] = useState(true);
-  const didMount = useRef(false);
 
   useEffect(() => {
     setloading(false);
-    if (didMount.current) {
-      getDetails();
-    } else {
-      didMount.current = true;
-    }
+    getDetails();
   }, [url]);
 
   const getDetails = async () => {

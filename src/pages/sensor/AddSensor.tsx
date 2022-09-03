@@ -1,4 +1,3 @@
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { ButtonWithText } from "components/common/button/ButtonWithText";
 import FieldInput from "components/common/fields/FieldInput";
 import FieldRadio from "components/common/fields/FieldRadio";
@@ -7,7 +6,7 @@ import { UsePost } from "hooks";
 import { useSchema } from "hooks/other/useSchema";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, CardBody, CardFooter, CardTitle, Col, Row } from "reactstrap";
+import { Card, CardBody, Col, Row } from "reactstrap";
 import { ADD_SENSOR } from "utils/APIUrls";
 import { IusePost } from "utils/types";
 
@@ -36,20 +35,19 @@ const AddSensor = () => {
     url: "",
     callBack: () => {},
     body: {},
-    hideToast: true,
+    showToast: true,
     onError: () => {},
   });
   const { postLoading } = UsePost(postData);
 
   const addSensor = (values: FormValueType) => {
     setPostData({
+      ...postData,
       url: ADD_SENSOR,
       callBack: () => {
         navigate("/");
       },
       body: { ...values },
-      hideToast: true,
-      onError: () => {},
     });
   };
   return (
