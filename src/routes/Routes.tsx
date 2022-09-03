@@ -9,7 +9,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/addSensor" element={<AddSensor />} />
-        <Route path="/editSensor" element={<EditSensor />} />
+        <Route path="/editSensor/:id" element={<EditSensor />} />
         <Route path="*" element={<Home />} />
         
       </Routes>

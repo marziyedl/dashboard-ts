@@ -7,7 +7,7 @@ import { Form, Formik } from "formik";
 import { UseGetDetails, UsePost, UsePut } from "hooks";
 import { useSchema } from "hooks/other/useSchema";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Card, CardBody, Col, Row } from "reactstrap";
 import { GET_SENSOR_DETAIL } from "utils/APIUrls";
 import { IusePut } from "utils/types";
@@ -24,7 +24,7 @@ type FormValueType = {
 
 function EditSensor() {
   const navigate = useNavigate();
-
+  const { id = "" } = useParams();
   const [putData, setPutData] = useState<IusePut>({
     url: "",
     callBack: () => {},
@@ -34,13 +34,11 @@ function EditSensor() {
     Trigger: false,
   });
   const { editLoading } = UsePut(putData);
-  const { loading, result }: any = UseGetDetails(
-    `${GET_SENSOR_DETAIL("nrf-365f269398d4")}`,
-  );
+  const { loading, result }: any = UseGetDetails(`${GET_SENSOR_DETAIL(id)}`);
 
   const editSensor = (values: FormValueType) => {
     setPutData({
-      url: EDIT_SENSOR("nrf-365f269398d4"),
+      url: EDIT_SENSOR(id),
       callBack: () => {},
       body: { ...values },
       hideToast: true,

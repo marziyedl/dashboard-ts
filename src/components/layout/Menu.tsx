@@ -16,40 +16,43 @@ import {
   faUsers,
   faGear,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 function Menu() {
+  const navigate = useNavigate();
+
   return (
     <>
       <SideNav className="bg-dark">
         <SideNav.Toggle />
         <SideNav.Nav defaultSelected="home">
-          <NavItem eventKey="home">
+          <NavItem eventKey="home" onClick={() => navigate("/")}>
             <NavIcon>
-              <FontAwesomeIcon icon={faHome} />
+              <FontAwesomeIcon size="lg" icon={faHome} />
             </NavIcon>
             <NavText>Home</NavText>
           </NavItem>
           <NavItem eventKey="Projects">
             <NavIcon>
-              <FontAwesomeIcon icon={faFile} />
+              <FontAwesomeIcon size="lg" icon={faFile} />
             </NavIcon>
             <NavText>Projects</NavText>
           </NavItem>
           <NavItem eventKey="sensor">
             <NavIcon>
-              <FontAwesomeIcon icon={faChartLine} />
+              <FontAwesomeIcon size="lg" icon={faChartLine} />
             </NavIcon>
             <NavText>Sensor</NavText>
           </NavItem>
           <NavItem eventKey="users">
             <NavIcon>
-              <FontAwesomeIcon icon={faUsers} />
+              <FontAwesomeIcon size="lg" icon={faUsers} />
             </NavIcon>
             <NavText>users</NavText>
           </NavItem>{" "}
           <NavItem eventKey="setting">
             <NavIcon>
-              <FontAwesomeIcon icon={faGear} />
+              <FontAwesomeIcon size="lg" icon={faGear} />
             </NavIcon>
             <NavText>setting</NavText>
           </NavItem>

@@ -9,15 +9,15 @@ import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div className="min-vh-100 bg-light">
-      <TopNav />
-      <Menu />
-      <div className="ms-5 ps-4  me-4 ">
-        <BrowserRouter>
+    <BrowserRouter>
+      <div className="min-vh-100 bg-light">
+        <TopNav />
+        <Menu />
+        <div className="ms-5 ps-4  me-4 ">
           <AppRoutes />
-        </BrowserRouter>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
