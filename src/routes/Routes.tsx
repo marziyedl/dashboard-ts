@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Loading from "components/common/Loading";
-import { AddSensor, EditSensor, Home } from "./Elemnts";
+import { AddSensor, EditSensor, Home, SensorDetail } from "./Elemnts";
 
 const AppRoutes = () => {
   return (
@@ -10,8 +10,8 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/addSensor" element={<AddSensor />} />
         <Route path="/editSensor/:id" element={<EditSensor />} />
+        <Route path="/sensorDetail/:id" element={<SensorDetail />} />
         <Route path="*" element={<Home />} />
-        
       </Routes>
     </Suspense>
   );

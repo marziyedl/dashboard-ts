@@ -39,7 +39,9 @@ function EditSensor() {
   const editSensor = (values: FormValueType) => {
     setPutData({
       url: EDIT_SENSOR(id),
-      callBack: () => {},
+      callBack: () => {
+        navigate("/");
+      },
       body: { ...values },
       hideToast: true,
       onError: () => {},
@@ -51,7 +53,7 @@ function EditSensor() {
     <Card className="mt-5">
       <Row className="p-3">
         <Col sm="8">
-          <h2 className="border-bottom">edit Sensor</h2>
+          <h2 className="border-bottom">edit Sensor - {id}</h2>
         </Col>
         <Col sm="4">
           <h2 className="border-bottom">Alert</h2>

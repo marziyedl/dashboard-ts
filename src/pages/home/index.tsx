@@ -26,10 +26,10 @@ function Index() {
       </Row>{" "}
       <Row className="justify-content-center mt-3">
         <Col sm="12" style={{height:"35vh"}}>
-          <PerfectScrollbar>
+          
             
             <SensorTable />
-          </PerfectScrollbar>
+      
         </Col>
       </Row>
     </>

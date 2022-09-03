@@ -6,7 +6,7 @@ function Loading() {
     <Row>
       <Col lg="12">
         <Card className="align-items-center border-0">
-          <Spinner size={"lg"}></Spinner>
+          <Spinner></Spinner>
         </Card>
       </Col>
     </Row>

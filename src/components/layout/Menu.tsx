@@ -38,7 +38,7 @@ function Menu() {
             </NavIcon>
             <NavText>Projects</NavText>
           </NavItem>
-          <NavItem eventKey="sensor">
+          <NavItem eventKey="sensor"  onClick={() => navigate("addSensor")}>
             <NavIcon>
               <FontAwesomeIcon size="lg" icon={faChartLine} />
             </NavIcon>

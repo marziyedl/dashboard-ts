@@ -31,7 +31,7 @@ const initialValue: FormValueType = {
 const AddSensor = () => {
   const navigate = useNavigate();
   const { addSensorValidation } = useSchema();
-  console.log("object");
+
   const [postData, setPostData] = useState<IusePost>({
     url: "",
     callBack: () => {},
@@ -44,7 +44,9 @@ const AddSensor = () => {
   const addSensor = (values: FormValueType) => {
     setPostData({
       url: ADD_SENSOR,
-      callBack: () => {},
+      callBack: () => {
+        navigate("/");
+      },
       body: { ...values },
       hideToast: true,
       onError: () => {},
