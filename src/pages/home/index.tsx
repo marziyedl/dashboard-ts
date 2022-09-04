@@ -6,8 +6,8 @@ import { Col, Row } from "reactstrap";
 
 function Index() {
   return (
-    <>
-      <Row className="justify-content-center mt-3">
+    <section>
+      <Row className="justify-content-center mt-3 mx-0">
         <Col sm="4">
           <DetailCard number={182} text="Total sensor" icon={faShop} />
         </Col>
@@ -28,7 +28,7 @@ function Index() {
           <SensorTable />
         </Col>
       </Row>
-    </>
+    </section>
   );
 }
 

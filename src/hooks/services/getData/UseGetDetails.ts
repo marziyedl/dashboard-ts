@@ -20,7 +20,7 @@ const useGetDetails = (
       setloading(true);
       await Adapter.get(url, { params: { ...params } }).then(
         (response: ResponseType) => {
-          setResult(response.data);
+          setResult(response.data.result);
           onSuccess(response.data);
         },
       );

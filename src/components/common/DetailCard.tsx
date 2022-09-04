@@ -13,7 +13,7 @@ function DetailCard({ text, icon, number = 0 }: DetailCardProp) {
   return (
     <Card className="d-flex justify-content-between align-items-center flex-row p-3">
       <div>
-        <h6>{text}</h6>
+        <h6 className="text-uppercase">{text}</h6>
         <h6>{number}</h6>
       </div>
       <FontAwesomeIcon icon={icon} size="2x" />

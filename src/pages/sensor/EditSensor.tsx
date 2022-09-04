@@ -20,7 +20,18 @@ type FormValueType = {
   max_temp_limit: number;
   monitor_max_temp: boolean;
 };
-
+type resultType = {
+  device_id: string;
+  last_online: string;
+  last_temp: number;
+  customer: string;
+  location: string;
+  overview: {
+    total_messages: number;
+    down_time: number;
+    alerts: number;
+  };
+};
 function EditSensor() {
   const navigate = useNavigate();
   const { id = "" } = useParams();
@@ -32,8 +43,8 @@ function EditSensor() {
     onError: () => {},
   });
   const { editLoading } = UsePut(putData);
-  const { loading, result } = UseGetDetails(`${GET_SENSOR_DETAIL(id)}`);
-
+  const { loading, result }: { loading: boolean; result: resultType } =
+    UseGetDetails(`${GET_SENSOR_DETAIL(id)}`);
   const editSensor = (values: FormValueType) => {
     setPutData({
       ...putData,
@@ -59,8 +70,8 @@ function EditSensor() {
         {!loading ? (
           <Formik
             initialValues={{
-              customer: result.result?.customer,
-              location: result.result?.location,
+              customer: result?.customer,
+              location: result?.location,
               min_temp_limit: 0,
               monitor_min_temp: false,
               max_temp_limit: 0,

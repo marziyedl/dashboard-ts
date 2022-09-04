@@ -63,7 +63,7 @@ function SensorTable() {
                       text="Edit sensor"
                     />
                     <ButtonWithText
-                      //onClick={() => navigate("/")}
+                      onClick={() => navigate(`sensorDetail/${item.device_id}`)}
                       type="info"
                       className="col-5"
                       text="Details"
