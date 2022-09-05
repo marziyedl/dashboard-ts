@@ -13,21 +13,20 @@ axios : API calls
 react-perfect-scrollbar : handle scrooll
 react-toastify : show notif for API s
 @trendmicro/react-sidenav : side nav
+I did not write test because of timig I was very busy at work ....
 
 ## Folders
 
-Components > common : resusable components like  buttons , input , loading,
-Components > layout : resusable components like  menu and nav,
-Components > home/sensor :  components for this pages 
+Components > common : resusable components like buttons , input , loading,
+Components > layout : resusable components like menu and nav,
+Components > home/sensor : components for this pages
 
 helper : axios adapter and error handler
 
 hooks : custom hooks for API call get , post , put and validation for forms
 
-pages : contain pages 
+pages : contain pages
 
-pages : define routes 
+pages : define routes
 
 utils : util file like API url , types ,....
-
-

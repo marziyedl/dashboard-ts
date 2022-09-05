@@ -1,8 +1,6 @@
 import React from "react";
 import "./Menu.scss";
 import SideNav, {
-  Toggle,
-  Nav,
   NavItem,
   NavIcon,
   NavText,

@@ -1,7 +1,6 @@
 import { faUser} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
-import { Navbar, NavbarBrand, NavbarText } from 'reactstrap'
+import { Navbar, NavbarText } from 'reactstrap'
 
 function TopNav() {
   return (

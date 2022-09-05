@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { Fragment } from "react";
-import { Card } from "reactstrap";
-import { faUser, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { Fragment } from "react";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { useGetList } from "hooks";
 import { GET_SENSOR_EVENTS } from "../../utils/APIUrls";
 import { useParams } from "react-router-dom";
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import { TimestampToDate } from '../../utils/helpers';
+import PerfectScrollbar from "react-perfect-scrollbar";
+import { TimestampToDate } from "../../utils/helpers";
 import moment from "moment";
+import Loading from "components/common/Loading";
 
 type resultType = {
   event_name: string;
@@ -18,7 +18,9 @@ function ActivityCard() {
   const { id = "" } = useParams();
   const { items = [], loading }: { items: resultType[]; loading: boolean } =
     useGetList(GET_SENSOR_EVENTS(id));
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <PerfectScrollbar>
       <section>
         {items.map((item: resultType) => {
