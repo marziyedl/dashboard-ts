@@ -55,7 +55,7 @@ function EditSensor() {
       body: { ...values },
     });
   };
-  const { addSensorValidation } = useSchema();
+  const { editSensorValidation } = useSchema();
   return (
     <Card className="mt-5">
       <Row className="p-3">
@@ -77,7 +77,7 @@ function EditSensor() {
               max_temp_limit: 0,
               monitor_max_temp: false,
             }}
-            validationSchema={addSensorValidation}
+            validationSchema={editSensorValidation}
             onSubmit={(values) => editSensor(values)}
           >
             <Form

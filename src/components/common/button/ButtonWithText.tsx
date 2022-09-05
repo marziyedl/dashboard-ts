@@ -1,5 +1,4 @@
 import { Button, Spinner } from "reactstrap";
-import "./ButtonWithTextStyle.scss";
 
 export interface IButtonWithTextProps {
   onClick?: () => void;

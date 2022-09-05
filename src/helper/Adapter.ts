@@ -18,7 +18,6 @@ Adapter.interceptors.response.use(
     return response;
   },
   async (error: any) => {
-    const originalConfig = error.config;
     ErrorHandlerAdaptor(error);
     return Promise.reject(error);
   },

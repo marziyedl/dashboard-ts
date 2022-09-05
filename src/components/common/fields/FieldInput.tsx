@@ -14,12 +14,10 @@ const FieldInput = ({
   placeholder,
   type,
   className = "",
-  disabled,
+  disabled = false,
 }: IFieldInput) => {
   return (
-    <div
-      className={`${className} d-flex flex-row flex-nowrap mb-3 `}
-    >
+    <div className={`${className} d-flex flex-row flex-nowrap mb-3 `}>
       <div className="ms-3 w-100">
         <p className="position-relative d-flex align-items-center mb-2">
           <ErrorMessage name={name}>
